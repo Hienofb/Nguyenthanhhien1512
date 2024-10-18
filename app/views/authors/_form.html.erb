@@ -1,0 +1,30 @@
+<%= form_with(model: author) do |form| %>
+<% if author.errors.any? %>
+<div id="error_explanation" class="bg-red-50 p-6 rounded text-red-800">
+  <h2 class="text-lg font-semibold mb-3"><%= pluralize(author.errors.count, "error") %> prohibited this author from being saved:</h2>
+
+  <ul class="list-disc leading-relaxed">
+    <% author.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+  <div class="mb-6">
+        <%= form.label :first_name, class: label_class %>
+          <%= form.text_field :first_name, class: input_class %>
+      </div>
+  <div class="mb-6">
+        <%= form.label :last_name, class: label_class %>
+          <%= form.text_field :last_name, class: input_class %>
+      </div>
+
+<%= form.submit class: button_class(theme: 'primary') %>
+
+<% if author.persisted? %>
+<%= link_to "Cancel", author, class: "text-neutral-700 underline inline-block ml-3" %>
+<% else %>
+<%= link_to "Cancel", authors_path, class:  "text-neutral-700 underline inline-block ml-3" %>
+<% end %>
+<% end %>
